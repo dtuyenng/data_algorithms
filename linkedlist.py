@@ -227,39 +227,48 @@ class LinkedList:
 
     def reverse(self):
 
+        if self.head is None:
+            return False
+
         before = None
         curr = self.head
         after = curr.pointer
-        print(f"before: {before} curr: {curr.value} after: {after.value}")
         curr.pointer = before
 
-        # while curr.point is not None
-
-        before = curr
-        curr = after
-        after = after.pointer
-        print(f"before: {before.value} curr: {curr.value} after: {after.value}")
-        curr.pointer = before
-        print(f"curr -> {before.value}")
-
-
-        before = curr
-        curr = after
-        after = after.pointer
-        print(f"before: {before.value} curr: {curr.value} after: {after.value}")
-        curr.pointer = before
-        print(f"curr -> {before.value}")
-
-        before = curr
-        curr = after
-        after = after.pointer
-        print(f"before: {before.value} curr: {curr.value} after: {after}")
-        curr.pointer = before
-        print(f"curr -> {before.value}")
+        while after is not None:
+            before = curr
+            curr = after
+            after = after.pointer
+            curr.pointer = before
 
         tmp = self.head
         self.head = self.tail
         self.tail = tmp
+
+
+        # before = curr
+        # curr = after
+        # after = after.pointer
+        # print(f"before: {before.value} curr: {curr.value} after: {after.value}")
+        # curr.pointer = before
+        # print(f"curr -> {before.value}")
+        #
+        #
+        # before = curr
+        # curr = after
+        # after = after.pointer
+        # print(f"before: {before.value} curr: {curr.value} after: {after.value}")
+        # curr.pointer = before
+        # print(f"curr -> {before.value}")
+        #
+        # before = curr
+        # curr = after
+        # after = after.pointer
+        # print(f"before: {before.value} curr: {curr.value} after: {after}")
+        # curr.pointer = before
+        # print(f"curr -> {before.value}")
+
+
 
 
 
@@ -279,11 +288,11 @@ class LinkedList:
 
 linked_list = LinkedList(5)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.append(7)
+# linked_list.append(7)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.append(8)
+# linked_list.append(8)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.append(4)
+# linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 # linked_list.append(3)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
@@ -291,6 +300,7 @@ linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
 linked_list.print()
+linked_list.pop_first()
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 linked_list.reverse()
 linked_list.print()
