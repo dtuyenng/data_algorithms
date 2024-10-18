@@ -9,7 +9,10 @@ Methods:
     pop_first(value)
     pop_last(value) 
     get(index)
+    set_value(value, index)
     insert_value(value, index) *done*
+    remove_value(value, index)
+    
 
 """
 from operator import truediv
@@ -127,84 +130,49 @@ class LinkedList:
         self.length -= 1
         return tmp
 
-    def get(self, index: int) -> Union[Node, bool]:
-        if index >= self.length or index < 0:
+    """
+    get_node(index): return node at index
+    
+        lengtH: 3
+         5 -> 6 -> 9 
+              ^
+        1. iterate through list using a counter
+        2. stop when counter is index, return node at that counter
+    """
+
+    def get_node(self, index) -> Union[Node, None]:
+        if index < 0 or index >= self.length:
+            return None
+        tmp = self.head
+        for _ in range(index):
+            tmp = tmp.pointer
+        return tmp
+
+
+    """
+        set_value (index, value)
+             
+        5 -> 6 -> 9    =>    5 -> 18 -> 9
+             ^                    ^
+        
+        1. Get node at index position using get(index)
+        2. Set value of that node to value  
+    """
+
+    def set_value(self, value, index: int) -> bool:
+        if index < 0 or index >= self.length:
             return False
-        counter = 0
-        tmp_node = self.head
-        while counter < index:
-            tmp_node = tmp_node.pointer
-            counter += 1
-        return tmp_node
 
-    """
-    index = 1
-    4-> 
-
-    5 -> 6 -> 9    =>    5 -> 4 -> 6 -> 9
-        1. Create new node with value
-        2. Iterate through the list until node at index
-        3. set new node's pointer to node at index
-        4. set pre pointer  to new node
-    """
-
-    # def insert_value(self, index, value):
-    #     new_node = Node(value)
-    #
-    #     if index < 0 or index > self.length:
-    #         return None
-    #     elif index == 0:
-    #         self.prepend(value)
-    #     elif index == self.length:
-    #         self.append(value)
-    #         print("yo")
-    #     else:
-    #         tmp = self.head
-    #         pre = None
-    #         for _ in range(index):
-    #             pre = tmp
-    #             tmp =tmp.pointer
-    #
-    #         new_node.pointer = tmp
-    #         pre.pointer = new_node
-
-    """
-        index = 1
-        4-> 
-
-        5 -> 6 -> 9    =>    5 -> 4 -> 6 -> 9
-            1. Create new node with value
-            2. Iterate through the list until node before index (index -1)
-            3. set that current node's pointer to new node
-            4. set new node's pointer to current node.pointer
-    """
-    # def insert_value(self, index, value):
-    #     new_node = Node(value)
-    #
-    #     if index < 0 or index > self.length:  # Invalid index
-    #         return None
-    #     elif index == 0:  # Insert at the start (equivalent to prepend)
-    #         self.prepend(value)
-    #         return
-    #     elif index == self.length:  # Insert at the end (equivalent to append)
-    #         self.append(value)
-    #         return
-    #     else:
-    #         tmp = self.head
-    #         for _ in range(index - 1):  # Stop at the node just before the target index
-    #             tmp = tmp.pointer
-    #
-    #         new_node.pointer = tmp.pointer  # Point the new node to the next node
-    #         tmp.pointer = new_node  # Insert new node after `tmp`
-    #
-    #     self.length += 1  # Increment length after successful insertion
+        target_node = self.get_node(index)
+        target_node.value = value
+        return True
 
     """
         index = 1
         new node: 4-> 
     
         5 -> 6 -> 9    =>    5 -> 4 -> 6 -> 9
-        
+             ^
             1. Create new node with value
             2. get node before index position using get(index -1)
                 3. Set new node's pointer to pointer of node before index
@@ -224,10 +192,43 @@ class LinkedList:
             return True
         else:
             new_node = Node(value)
-            prev_node = self.get(index-1)
+            prev_node = self.get_node(index-1)
             new_node.pointer = prev_node.pointer
             prev_node.pointer = new_node
             self.length += 1
+            return True
+
+    """
+        remove_node(index)
+    
+        5 -> 6 -> 9    =>    5 -> 9
+             ^
+             
+        1. Get previous node of index node (index -1), call it prev
+        2. get index node (index), call it tmp
+        3. Set pointer of prev node to pointer of tmp node
+    
+    """
+    def remove_node(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        elif index == 0:
+            self.pop_first()
+            return True
+        elif index == self.length -1:
+            self.pop_last()
+            return True
+
+        prev = self.get_node(index -1)
+        tmp = self.get_node(index)
+        prev.pointer = tmp.pointer
+        self.length -= 1
+        return True
+
+
+
+
+
 
 
 
@@ -245,7 +246,9 @@ linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
 linked_list.print()
-linked_list.insert_value(69, 3)
+# print(f"Node: {linked_list.get_node(4).value}")
+# linked_list.set_value(69, 0)
+linked_list.remove_node(0)
 linked_list.print()
 
 
