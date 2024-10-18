@@ -225,6 +225,51 @@ class LinkedList:
         self.length -= 1
         return True
 
+    def reverse(self):
+
+        before = None
+        curr = self.head
+        after = curr.pointer
+        print(f"before: {before} curr: {curr.value} after: {after.value}")
+        curr.pointer = before
+
+        # while curr.point is not None
+
+        before = curr
+        curr = after
+        after = after.pointer
+        print(f"before: {before.value} curr: {curr.value} after: {after.value}")
+        curr.pointer = before
+        print(f"curr -> {before.value}")
+
+
+        before = curr
+        curr = after
+        after = after.pointer
+        print(f"before: {before.value} curr: {curr.value} after: {after.value}")
+        curr.pointer = before
+        print(f"curr -> {before.value}")
+
+        before = curr
+        curr = after
+        after = after.pointer
+        print(f"before: {before.value} curr: {curr.value} after: {after}")
+        curr.pointer = before
+        print(f"curr -> {before.value}")
+
+        tmp = self.head
+        self.head = self.tail
+        self.tail = tmp
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -246,10 +291,15 @@ linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
 linked_list.print()
+# print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
+linked_list.reverse()
+linked_list.print()
+
+
 # print(f"Node: {linked_list.get_node(4).value}")
 # linked_list.set_value(69, 0)
-linked_list.remove_node(0)
-linked_list.print()
+# linked_list.remove_node(0)
+# linked_list.print()
 
 
 
