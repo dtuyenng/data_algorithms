@@ -226,6 +226,10 @@ class LinkedList:
         return True
 
     def reverse(self):
+
+        if self.head is None:
+            return False
+
         curr = self.head
         after = None
         before = None
@@ -237,6 +241,7 @@ class LinkedList:
             curr = after  # Move 'curr' to the next node
 
         self.head, self.tail = self.tail, self.head  # Swap head and tail after reversal
+        return True
 
     # def reverse(self):
     #
@@ -301,23 +306,24 @@ class LinkedList:
 
 linked_list = LinkedList(5)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.append(7)
+# linked_list.append(7)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.append(8)
+# linked_list.append(8)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.append(4)
+# linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 # linked_list.append(3)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 # linked_list.append(8)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
+
+linked_list.pop_first()
 linked_list.print()
-# linked_list.pop_first()
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 linked_list.reverse()
 linked_list.print()
-print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
+# print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
 
 
