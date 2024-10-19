@@ -226,47 +226,60 @@ class LinkedList:
         return True
 
     def reverse(self):
-
-        if self.head is None:
-            return False
-
-        before = None
         curr = self.head
-        after = curr.pointer
-        curr.pointer = before
+        after = None
+        before = None
 
-        while after is not None:
-            before = curr
-            curr = after
-            after = after.pointer
-            curr.pointer = before
+        for _ in range(self.length):
+            after = curr.pointer  # Save the next node
+            curr.pointer = before  # Reverse the current node's pointer
+            before = curr  # Move 'before' to current node
+            curr = after  # Move 'curr' to the next node
 
-        tmp = self.head
-        self.head = self.tail
-        self.tail = tmp
+        self.head, self.tail = self.tail, self.head  # Swap head and tail after reversal
 
-
-        # before = curr
-        # curr = after
-        # after = after.pointer
-        # print(f"before: {before.value} curr: {curr.value} after: {after.value}")
-        # curr.pointer = before
-        # print(f"curr -> {before.value}")
-        #
-        #
-        # before = curr
-        # curr = after
-        # after = after.pointer
-        # print(f"before: {before.value} curr: {curr.value} after: {after.value}")
-        # curr.pointer = before
-        # print(f"curr -> {before.value}")
-        #
-        # before = curr
-        # curr = after
-        # after = after.pointer
-        # print(f"before: {before.value} curr: {curr.value} after: {after}")
-        # curr.pointer = before
-        # print(f"curr -> {before.value}")
+    # def reverse(self):
+    #
+    #     if self.head is None:
+    #         return False
+    #
+    #     before = None
+    #     curr = self.head
+    #     after = curr.pointer
+    #     curr.pointer = before
+    #
+    #     while after is not None:
+    #         before = curr
+    #         curr = after
+    #         after = after.pointer
+    #         curr.pointer = before
+    #
+    #     tmp = self.head
+    #     self.head = self.tail
+    #     self.tail = tmp
+    #
+    #
+    #     # before = curr
+    #     # curr = after
+    #     # after = after.pointer
+    #     # print(f"before: {before.value} curr: {curr.value} after: {after.value}")
+    #     # curr.pointer = before
+    #     # print(f"curr -> {before.value}")
+    #     #
+    #     #
+    #     # before = curr
+    #     # curr = after
+    #     # after = after.pointer
+    #     # print(f"before: {before.value} curr: {curr.value} after: {after.value}")
+    #     # curr.pointer = before
+    #     # print(f"curr -> {before.value}")
+    #     #
+    #     # before = curr
+    #     # curr = after
+    #     # after = after.pointer
+    #     # print(f"before: {before.value} curr: {curr.value} after: {after}")
+    #     # curr.pointer = before
+    #     # print(f"curr -> {before.value}")
 
 
 
@@ -288,11 +301,11 @@ class LinkedList:
 
 linked_list = LinkedList(5)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(7)
+linked_list.append(7)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(8)
+linked_list.append(8)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(4)
+linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 # linked_list.append(3)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
@@ -300,16 +313,12 @@ linked_list = LinkedList(5)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
 linked_list.print()
-linked_list.pop_first()
+# linked_list.pop_first()
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 linked_list.reverse()
 linked_list.print()
+print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
-
-# print(f"Node: {linked_list.get_node(4).value}")
-# linked_list.set_value(69, 0)
-# linked_list.remove_node(0)
-# linked_list.print()
 
 
 
