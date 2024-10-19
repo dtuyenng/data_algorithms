@@ -36,6 +36,17 @@ class DoublyLinkedList:
             self.length += 1
         return True
 
+    def prepend(self, value):
+        new_node = Node(value)
+
+        if self.head is None:
+            self.head, self.tail = new_node
+
+        new_node.next = self.head
+        self.head = new_node
+        self.length += 1
+        return True
+
     def pop(self):
         if self.head is None:
             return False
@@ -53,4 +64,5 @@ dll.append(5)
 dll.append(7)
 dll.pop()
 dll.pop()
+dll.prepend(69)
 dll.print()
