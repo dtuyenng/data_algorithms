@@ -57,12 +57,42 @@ class DoublyLinkedList:
         self.length -= 1
         return True
 
+    def pop_first(self):
+        if self.head is None:
+            return False
+        elif self.head == self.tail:
+            self.head, self.tail = None, None
+            self.length -= 1
+            return True
+        else:
+            tmp = self.head
+            self.head = self.head.next
+            self.head.prev = None
+            tmp.next = None
+            self.length -= 1
+            return tmp
+
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            print("Index out of range")
+            return None
+        tmp = self.tail
+        if index < self.length / 2:
+            tmp = self.head
+            print("lower")
+            for _ in range(index):
+                tmp = tmp.next
+        else:
+            tmp = self.tail
+            print("higher")
+            for _ in range(self.length-1, index, -1):
+                tmp = tmp.prev
+        return tmp
 
 dll = DoublyLinkedList(2)
 dll.append(3)
 dll.append(5)
 dll.append(7)
-dll.pop()
-dll.pop()
 dll.prepend(69)
 dll.print()
+print(dll.get(1).value)
