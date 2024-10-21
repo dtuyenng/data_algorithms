@@ -1,3 +1,4 @@
+from select import select
 from types import new_class
 
 
@@ -40,10 +41,12 @@ class DoublyLinkedList:
         new_node = Node(value)
 
         if self.head is None:
-            self.head, self.tail = new_node
-
-        new_node.next = self.head
-        self.head = new_node
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
         self.length += 1
         return True
 
@@ -79,14 +82,15 @@ class DoublyLinkedList:
         tmp = self.tail
         if index < self.length / 2:
             tmp = self.head
-            print("lower")
+            # print("lower")
             for _ in range(index):
                 tmp = tmp.next
         else:
             tmp = self.tail
-            print("higher")
+            # print("higher")
             for _ in range(self.length-1, index, -1):
                 tmp = tmp.prev
+        print(f"get: {tmp.value}")
         return tmp
 
     def insert_withoutget(self, value, index):
@@ -102,17 +106,57 @@ class DoublyLinkedList:
         tmp2.next = new_node
         self.length += 1
 
-    def insert(self):
-        pass
+    def insert(self, value, index):
+        new_node = Node(value)
+        if self.head is None:
+            return False
+        elif self.head == self.tail:
+            self.head, self.tail = None, None
+            self.length += 1
+            return True
+        elif index == 0:
+            self.prepend(value)
+            return True
+        elif index == self.length - 1:
+            self.pop()
+            return True
+        else:
+            tmp = self.get(index)
+            tmp2 = tmp.prev
+            new_node.prev = tmp.prev
+            tmp2.next = new_node
+            new_node.next = tmp
+            tmp.prev = new_node
+            self.length += 1
+
+
+
 
     def set_value(self, value, index):
         selected_node = self.get(index)
-        print(f"selected: {selected_node.value}")
         selected_node.value = value
         return True
 
     def remove(self, index):
-        pass
+        if index < 0 or index >= self.length:
+            return False
+        elif index == 0:
+            self.pop_first()
+            self.length -= 1
+            return True
+        elif index == self.length -1:
+            self.pop()
+            self.length -= 1
+            return True
+        else:
+            selected_node = self.get(index)
+            previous_node = selected_node.prev
+            next_node = selected_node.next
+            previous_node.next = selected_node.next
+            next_node.prev = previous_node
+            selected_node.next = None
+            selected_node.prev = None
+            self.length -= 1
 
 
 
@@ -122,6 +166,7 @@ dll.append(3)
 dll.append(5)
 dll.append(7)
 dll.prepend(69)
-dll.insert_withoutget(96, 3)
-dll.set_value(1981, 1)
+dll.insert(96, 0)
 dll.print()
+
+
