@@ -89,10 +89,39 @@ class DoublyLinkedList:
                 tmp = tmp.prev
         return tmp
 
+    def insert_withoutget(self, value, index):
+        new_node = Node(value)
+        tmp = self.head
+        for _ in range(index):
+            tmp = tmp.next
+
+        new_node.next = tmp
+        new_node.prev = tmp.prev
+        tmp2 = tmp.prev
+        tmp.prev = new_node
+        tmp2.next = new_node
+        self.length += 1
+
+    def insert(self):
+        pass
+
+    def set_value(self, value, index):
+        selected_node = self.get(index)
+        print(f"selected: {selected_node.value}")
+        selected_node.value = value
+        return True
+
+    def remove(self, index):
+        pass
+
+
+
+
 dll = DoublyLinkedList(2)
 dll.append(3)
 dll.append(5)
 dll.append(7)
 dll.prepend(69)
+dll.insert_withoutget(96, 3)
+dll.set_value(1981, 1)
 dll.print()
-print(dll.get(1).value)
