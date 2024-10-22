@@ -43,6 +43,8 @@ class BinarySearchTree:
 
         tmp = self.root
         while True:
+            if value == tmp.value:
+                return False
             if value < tmp.value:
                 if tmp.left is None:
                     tmp.left = new_node
@@ -55,8 +57,6 @@ class BinarySearchTree:
                     return True
                 else:
                     tmp = tmp.right
-            else:
-                return False
 
 
 
