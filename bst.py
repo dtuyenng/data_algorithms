@@ -58,6 +58,24 @@ class BinarySearchTree:
                 else:
                     tmp = tmp.right
 
+    def bfs(self):
+        q = []
+        result = []
+
+        tmp = self.root
+        q.append(tmp)
+        while q:                            # i.e len(q) != 0:
+            curr = q.pop(0)                 # Remove from the front of the queue
+            if curr is not None:
+                result.append(curr.value)
+            if curr.left is not None:
+                q.append(curr.left)         # Add left child to the queue
+            if curr.right is not None:
+                q.append(curr.right)        # Add right child to the queue
+        print(result)
+
+
+
 
 
 bst = BinarySearchTree()
@@ -72,3 +90,4 @@ print("   ", bst.root.value)
 print(" ", bst.root.left.value," ", bst.root.right.value)
 print(bst.root.left.left.value, bst.root.left.right.value,
       bst.root.right.left.value, bst.root.right.right.value)
+bst.bfs()
