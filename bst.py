@@ -84,6 +84,19 @@ class BinarySearchTree:
                 traverse(root.right)
         traverse(self.root)
 
+    def dfs_inorder(self):
+        def traverse(current_value: Node):
+            if current_value.left is not None:
+                traverse(current_value.left)
+
+            print(current_value.value)
+
+            if current_value.right is not None:
+                traverse(current_value.right)
+
+        traverse(self.root)
+
+
 bst = BinarySearchTree()
 bst.insert2(47)
 bst.insert2(21)
@@ -97,4 +110,5 @@ print(" ", bst.root.left.value," ", bst.root.right.value)
 print(bst.root.left.left.value, bst.root.left.right.value,
       bst.root.right.left.value, bst.root.right.right.value)
 bst.bfs()
-bst.dfs_preorder()
+# bst.dfs_preorder()
+bst.dfs_inorder()
