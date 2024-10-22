@@ -74,9 +74,15 @@ class BinarySearchTree:
                 q.append(curr.right)        # Add right child to the queue
         print(result)
 
+    def dfs_preorder(self):
 
-
-
+        def traverse(root: Node):
+            print(root.value)
+            if root.left is not None:
+                traverse(root.left)
+            if root.right is not None:
+                traverse(root.right)
+        traverse(self.root)
 
 bst = BinarySearchTree()
 bst.insert2(47)
@@ -91,3 +97,4 @@ print(" ", bst.root.left.value," ", bst.root.right.value)
 print(bst.root.left.left.value, bst.root.left.right.value,
       bst.root.right.left.value, bst.root.right.right.value)
 bst.bfs()
+bst.dfs_preorder()
