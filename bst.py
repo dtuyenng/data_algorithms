@@ -30,7 +30,6 @@ class BinarySearchTree:
                     parent.right = new_node
                     break
             else:
-                # print("equal")
                 return False
         # print(f"tmp: {tmp}")
         return True
@@ -61,7 +60,6 @@ class BinarySearchTree:
     def bfs(self):
         q = []
         result = []
-
         tmp = self.root
         q.append(tmp)
         while q:                            # i.e len(q) != 0:
