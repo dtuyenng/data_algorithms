@@ -75,7 +75,6 @@ class BinarySearchTree:
         print(result)
 
     def dfs_preorder(self):
-
         def traverse(root: Node):
             print(root.value)
             if root.left is not None:
@@ -88,12 +87,18 @@ class BinarySearchTree:
         def traverse(current_value: Node):
             if current_value.left is not None:
                 traverse(current_value.left)
-
             print(current_value.value)
-
             if current_value.right is not None:
                 traverse(current_value.right)
+        traverse(self.root)
 
+    def dfs_postorder(self):
+        def traverse(current_value: Node):
+            if current_value.left is not None:
+                traverse(current_value.left)
+            if current_value.right is not None:
+                traverse(current_value.right)
+            print(current_value.value)
         traverse(self.root)
 
 
@@ -111,4 +116,5 @@ print(bst.root.left.left.value, bst.root.left.right.value,
       bst.root.right.left.value, bst.root.right.right.value)
 bst.bfs()
 # bst.dfs_preorder()
-bst.dfs_inorder()
+# bst.dfs_inorder()
+bst.dfs_postorder()
