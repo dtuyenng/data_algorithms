@@ -29,6 +29,8 @@ class LinkedList:
         self.new_node = Node(value)
         self.head = self.new_node
         self.tail = self.new_node
+
+
         self.length = 1
 
     def print(self):
@@ -126,9 +128,32 @@ class LinkedList:
 
         pre.pointer = None
         self.tail = pre
-        print(f"tail set to {self.tail.value} with pointer {self.tail.pointer}")
         self.length -= 1
         return tmp
+
+    def pop_last2(self):
+        tmp = self.head
+        result = None
+
+        if self.head is None:
+            return None
+
+        if self.head == self.tail:
+            tmp = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return tmp
+
+        while tmp.pointer.pointer is not None:
+            tmp = tmp.pointer
+
+        result = tmp.pointer
+        tmp.pointer = None
+        self.tail = tmp
+        self.length -= 1
+        return result
+
 
     """
     get_node(index): return node at index
@@ -243,6 +268,52 @@ class LinkedList:
         self.head, self.tail = self.tail, self.head  # Swap head and tail after reversal
         return True
 
+    def reverse2(self):
+
+        tmp = self.head
+        self.head, self.tail = self.tail, self.head
+        prev = None
+        aft = tmp.pointer
+
+        for _ in range(self.length):
+            print("*")
+            aft = tmp.pointer
+            tmp.pointer = prev
+            prev = tmp
+            tmp = aft
+
+    def pop_last_tmp(self):
+        if self.length == 0:
+            return None
+        returned_value = self.tail
+        if self.length == 1:
+            self.head, self.tail = None, None
+        else:
+            self.tail = self.tail.prev
+            self.tail.prev = None
+            returned_value.next = None
+        self.length -= 1
+        return returned_value
+
+    def pop_last_tmp2(self):
+        if self.length == 0:
+            return None
+        returned_value = self.tail
+        if self.length == 1:
+            self.head, self.tail = None, None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+        returned_value.prev = None
+        self.length -= 1
+        return returned_value
+
+
+
+
+
+
+
     # def reverse(self):
     #
     #     if self.head is None:
@@ -306,24 +377,20 @@ class LinkedList:
 
 linked_list = LinkedList(5)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(7)
+linked_list.append(7)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(8)
+linked_list.append(8)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(4)
+linked_list.append(4)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(3)
+linked_list.append(3)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-# linked_list.append(8)
+linked_list.append(8)
 # print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
+linked_list.reverse2()
+linked_list.print()
 
-linked_list.pop_first()
-linked_list.print()
-# print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
-linked_list.reverse()
-linked_list.print()
-# print(f"head: {linked_list.head.value}  tail: {linked_list.tail.value}")
 
 
 

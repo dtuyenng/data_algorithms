@@ -10,36 +10,9 @@ class BinarySearchTree:
 
     def insert(self, value):
         new_node = Node(value)
-        if self.root is None:
-            self.root = new_node
-            return True
-
-        tmp = self.root
-        parent = None
-        while True:
-            if value < tmp.value:
-                parent = tmp
-                tmp = tmp.left
-                if tmp is None:
-                    parent.left = new_node
-                    break
-            elif value > tmp.value:
-                parent = tmp
-                tmp = tmp.right
-                if tmp is None:
-                    parent.right = new_node
-                    break
-            else:
-                return False
-        # print(f"tmp: {tmp}")
-        return True
-
-    def insert2(self, value):
-        new_node = Node(value)
         if self.root == None:
             self.root = new_node
             return True
-
         tmp = self.root
         while True:
             if value == tmp.value:
@@ -101,13 +74,13 @@ class BinarySearchTree:
 
 
 bst = BinarySearchTree()
-bst.insert2(47)
-bst.insert2(21)
-bst.insert2(76)
-bst.insert2(18)
-bst.insert2(27)
-bst.insert2(52)
-bst.insert2(82)
+bst.insert(47)
+bst.insert(21)
+bst.insert(76)
+bst.insert(18)
+bst.insert(27)
+bst.insert(52)
+bst.insert(82)
 print("   ", bst.root.value)
 print(" ", bst.root.left.value," ", bst.root.right.value)
 print(bst.root.left.left.value, bst.root.left.right.value,
