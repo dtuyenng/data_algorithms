@@ -5,6 +5,7 @@ class Graph:
         self.adj_list: Dict[str, List] = {}
 
     def print_graph(self):
+        print(" ")
         for vert in self.adj_list.items():
             print(vert)
 
@@ -24,24 +25,14 @@ class Graph:
         print("At least one of the vertices doesn't exist")
         return False
 
-    # def remove_edge(self, vert1, vert2):
-    #     if vert1 in self.adj_list.keys() and vert2 in self.adj_list.keys():
-    #         self.adj_list[vert1].remove(vert2)
-    #         self.adj_list[vert2].remove(vert1)
-    #         return True
-    #     else:
-    #         print("False")
-    #         return False
-
-    def remove_edge(self, vert1, vert2):
-        # Check that both vertices contain the edge
-        if vert1 in self.adj_list and vert2 in self.adj_list:
-            if vert2 in self.adj_list[vert1] and vert1 in self.adj_list[vert2]:
-                # Remove each vertex from the other's adjacency list
-                self.adj_list[vert1].remove(vert2)
-                self.adj_list[vert2].remove(vert1)
+    def remove_edge(self, v1, v2):
+        try:
+            if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
+                self.adj_list[v1].remove(v2)
+                self.adj_list[v2].remove(v1)
                 return True
-        print("Edge does not exist between", vert1, "and", vert2)
+        except ValueError:
+            pass
         return False
 
     def remove_vert(self, vert):
@@ -57,17 +48,16 @@ graph.add_vert("A")
 graph.add_vert("B")
 graph.add_vert("C")
 graph.add_vert("D")
+graph.add_vert("E")
 
 graph.add_edge("A", "B")
 graph.add_edge("A", "C")
 graph.add_edge("D", "A")
 graph.add_edge("D", "B")
 graph.add_edge("D", "C")
-graph.remove_vert("D")
-graph.remove_vert("C")
-graph.remove_vert("A")
+graph.remove_edge("E", "D")
 graph.print_graph()
-print(" ")
+
 
 
 
