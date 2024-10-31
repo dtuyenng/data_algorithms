@@ -2,6 +2,15 @@
 
 arr = [4, 2, 6, 5, 1, 3]
 
+def bubble_sort2(array):
+    for i in range(len(array)-1):
+        for j in range(len(array) - i - 1):
+            if array[j] > array[j+1]:
+                tmp = array[j]
+                array[j] = array[j+1]
+                array[j+1] = tmp
+
+
 def insert_sort(array):
     for i in range(1, len(array)):
         curr = array[i]
@@ -31,5 +40,5 @@ def selection_sort(array):
             array[i], array[min_index] = array[min_index], array[i]
 
 
-insert_sort(arr)
+bubble_sort2(arr)
 print(arr)
