@@ -3,7 +3,7 @@
 arr = [4, 2, 6, 5, 1, 3]
 
 def bubble_sort2(array):
-    for i in range(len(array)-1):
+    for i in range(len(array) - 1):
         for j in range(len(array) - i - 1):
             if array[j] > array[j+1]:
                 tmp = array[j]
