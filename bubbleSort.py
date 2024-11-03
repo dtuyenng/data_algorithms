@@ -21,28 +21,4 @@ def bubble_sort(array):
             if curr > after:
                 array[index], array[index+1] = array[index+1], array[index]
 
-def selection_sort(array):
-    for i in range(len(array)):
-        min_index = i  # Start by assuming the minimum is the current position
-        for j in range(i + 1, len(array)):
-            if array[j] < array[min_index]:
-                min_index = j  # Update min_index if a smaller element is found
-        print("Current state of array:", array)
-        # Swap only if the minimum index has changed
-        if i != min_index:
-            array[i], array[min_index] = array[min_index], array[i]
 
-
-def selection_sort2(array):
-    for i in range(len(array)):
-        min_index = i
-        for j in range(i, len(array)):
-            if array[j] < array[min_index]:
-                min_index = j
-        tmp = array[min_index]
-        array[min_index] = array[i]
-        array[i] = tmp
-
-
-selection_sort2(arr)
-print(arr)
