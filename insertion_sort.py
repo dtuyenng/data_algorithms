@@ -1,13 +1,14 @@
-arr = [ 5, 2, 3, 1, 9, 1, 6]
+arr = [5, 2, 3, 1, 9, 1, 6]
 
 def insertion_sort(array):
     for i in range(1, len(array)):
-        curr = array[i]
         j = i - 1
-        while j >= 0 and curr < array[j]:
-            array [j + 1] = array[j]
+        curr = array[i]
+        while j >= 0 and array[j] > curr:
+            array[j+1] = array[j]
             j -= 1
-        array[j+1] = curr
+        j += 1
+        array[j] = curr
 
 insertion_sort(arr)
 print(arr)

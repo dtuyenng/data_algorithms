@@ -1,30 +1,79 @@
-from array import array
-from typing import List
 
 arr = [3, 5, 1, 7, 10, 6]
 
-
-
 def partition(array, low, high):
+    pivot = high
     j = low - 1
-    pivot_value = array[high]
     for i in range(low, high):
-        if array[i] < pivot_value:
+        if array[i] < array[pivot]:
             j += 1
             array[i], array[j] = array[j], array[i]
     j += 1
     array[j], array[high] = array[high], array[j]
     return j
 
-def quicksort(array, low, high):
-    if low < high:
-        pivot = partition(array, low, high)
-        quicksort(array, low, pivot - 1)
-        quicksort(array, pivot + 1, high)
+# def quicksort(array, low, high):
 
-quicksort(arr, 0, len(arr) - 1)
+
+
+# quicksort(arr, 0, len(arr) - 1)
+partition(arr, 0, len(arr) - 1)
 print(arr)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+# def partition(array, low, high):
+#     j = low - 1
+#     pivot_value = array[high]
+#     for i in range(low, high):
+#         if array[i] < pivot_value:
+#             j += 1
+#             array[i], array[j] = array[j], array[i]
+#     j += 1
+#     array[j], array[high] = array[high], array[j]
+#     return j
+#
+# def quicksort(array, low, high):
+#     if low < high:
+#         pivot = partition(array, low, high)
+#         quicksort(array, low, pivot - 1)
+#         quicksort(array, pivot + 1, high)
+#
+# quicksort(arr, 0, len(arr) - 1)
+# print(arr)
+#
 
 
 
