@@ -1,6 +1,71 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
+
+    def print(self):
+        tmp = self.head
+        output = ""
+        while tmp is not None:
+            output += str(tmp.value) + "-> "
+            tmp = tmp.next
+        print(output)
 
 
+    def append(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head, self.tail = new_node, new_node
+            self.length += 1
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+            self.length += 1
 
+    def get(self, index):
+        node = self.head
+        if index < 0 or index > self.length - 1:
+            print("Index Out of Bound")
+            return None
+        for i in range(index):
+            node = node.next
+        return node
+
+    def create_circle(self):
+        node = self.get(4)
+        node2 = self.get(1)
+        node.next = node2
+
+    def find_middle(self):
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
+    def pop(self):
+        pass
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+my_list = LinkedList()
+my_list.append(1)
+my_list.append(2)
+my_list.append(7)
+my_list.append(10)
+my_list.append(9)
+my_list.append(3)
+my_list.append(8)
+my_list.append(7)
+
+my_list.print()
+my_list.create_circle()
+my_list.print()
 
 # from typing import Union
 # """
