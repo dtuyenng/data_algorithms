@@ -37,6 +37,16 @@ class LinkedList:
         node2 = self.get(1)
         node.next = node2
 
+    def detect_circle(self):
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if fast == slow:
+                return True
+        return False
+
     def find_middle(self):
         slow = self.head
         fast = self.head
@@ -63,9 +73,8 @@ my_list.append(3)
 my_list.append(8)
 my_list.append(7)
 
-my_list.print()
-my_list.create_circle()
-my_list.print()
+# my_list.create_circle()
+print(my_list.detect_circle())
 
 # from typing import Union
 # """
