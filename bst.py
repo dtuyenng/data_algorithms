@@ -44,32 +44,38 @@ class BST:
 
     def bfs(self):
         queue = []
-        output = []
-        queue.append(self.root)
-        
+        result = []
+        curr = self.root
+        queue.append(curr) 
         if self.root is None:
-            return output
+            return result
         while queue:
-            tmp = queue.pop(0)
-            output.append(tmp.value)
-            if tmp.left is not None:
-                queue.append(tmp.left)
-            if tmp.right is not None:
-                queue.append(tmp.right)
+            curr = queue.pop(0)
+            result.append(curr.value)
+            if curr.left is not None:
+                queue.append(curr.left)
+            if curr.right is not None:
+                queue.append(curr.right)
 
-        return output
+        return result
+
+    def dfs_preorder(self):
+        pass
+
+    def dfs_inorder(self):
+        pass
 
 
 
 
 bst = BST()
-# bst.insert(47)
-# bst.insert(21)
-# bst.insert(76)
-# bst.insert(18)
-# bst.insert(27)
-# bst.insert(52)
-# bst.insert(82)
+bst.insert(47)
+bst.insert(21)
+bst.insert(76)
+bst.insert(18)
+bst.insert(27)
+bst.insert(52)
+bst.insert(82)
 # print(bst.root.value)
 # print(bst.root.left.value)
 # print(bst.root.right.value)

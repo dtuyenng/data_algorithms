@@ -2,28 +2,20 @@
 arr = [3, 5, 1, 7, 10, 6]
 
 def partition(array, low, high):
-    pivot = high
+    pivot_value = array[high]
     j = low - 1
-    for i in range(low, high):
-        if array[i] < array[pivot]:
+    for i in range (low, high):
+        if array[i] < pivot_value:
             j += 1
-            array[i], array[j] = array[j], array[i]
+            array[j], array[i] = array[i], array[j]
+
     j += 1
     array[j], array[high] = array[high], array[j]
     return j
 
-# def quicksort(array, low, high):
 
-
-
-# quicksort(arr, 0, len(arr) - 1)
 partition(arr, 0, len(arr) - 1)
 print(arr)
-
-
-
-
-
 
 
 
