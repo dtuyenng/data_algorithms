@@ -13,8 +13,13 @@ def partition(array, low, high):
     array[j], array[high] = array[high], array[j]
     return j
 
+def quicksort(array, low, high):
+    if low < high:
+        pivot = partition(array, low, high)
+        quicksort(array, low, pivot - 1)
+        quicksort(array, pivot + 1, high)
 
-partition(arr, 0, len(arr) - 1)
+quicksort(arr, 0, len(arr) - 1)
 print(arr)
 
 

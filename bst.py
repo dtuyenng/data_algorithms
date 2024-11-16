@@ -60,10 +60,43 @@ class BST:
         return result
 
     def dfs_preorder(self):
-        pass
+        output = []
+        def traverse(curr_node):
+            output.append(curr_node.value)
+            if curr_node.left is not None:
+                traverse(curr_node.left)
+            if curr_node.right is not None:
+                traverse(curr_node.right)
+
+        traverse(self.root)
+        return output
 
     def dfs_inorder(self):
-        pass
+        output = []
+        def traverse(curr_node):
+            if curr_node.left is not None:
+                traverse(curr_node.left)
+
+            output.append(curr_node.value)
+
+            if curr_node.right is not None:
+                traverse(curr_node.right)
+
+        traverse(self.root)
+        return output
+
+
+    def dfs_postorder(self):
+        output = []
+        def traverse(curr_node):
+            if curr_node.left is not None:
+                traverse(curr_node.left)
+            if curr_node.right is not None:
+                traverse(curr_node.right)
+            output.append(curr_node.value)
+
+        traverse(self.root)
+        return output
 
 
 
@@ -81,7 +114,9 @@ bst.insert(82)
 # print(bst.root.right.value)
 # print(bst.root.left.left.value)
 print(bst.bfs())
-
+print(bst.dfs_preorder())
+print(bst.dfs_inorder())
+print(bst.dfs_postorder())
 
 
 
