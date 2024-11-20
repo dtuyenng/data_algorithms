@@ -1,11 +1,5 @@
-arr = ["t", "u", "y", "e", "n"]
+arr = [0, 1, 2]
 
-# for i in range(len(arr)):
-#     print(" ")
-#     for j in range(len(arr) - i):
-#         print(arr[j+i])
-
-for i in range(len(arr)):
-    print(" ")
-    for j in range(i, len(arr)):
-        print(arr[j])
+if len(arr) > 10:
+    if arr[10] == 1:
+        print("Yo")
