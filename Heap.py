@@ -63,6 +63,9 @@ class MaxHeap:
         for i in range(self.size // 2, 0, -1):
             self.max_heapify(self.items, i)
 
+    def max_heapify_up(self):
+        pass
+
 
 
 heap = MaxHeap()
