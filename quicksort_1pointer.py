@@ -1,165 +1,52 @@
-
+# Array to be sorted
 arr = [3, 5, 1, 7, 10, 6]
 
 def partition(array, low, high):
-    pivot_value = array[high]
-    j = low - 1
+    """
+    Partitions the array around a pivot, which is chosen as the last element in the given range.
+    Parameters:
+    - array: The list of elements to be partitioned.
+    - low: The starting index of the range to partition.
+    - high: The ending index of the range to partition (pivot is chosen as array[high]).
+    Returns:
+    - The index of the pivot after placing it in its correct position.
+    """
+    pivot_value = array[high]  # Choose the last element as the pivot
+    j = low - 1  # Pointer for elements smaller than the pivot
+
+    # Loop through the elements and partition based on the pivot
     for i in range(low, high):
-        if array[i] < pivot_value:
-            j += 1
-            array[i], array[j] = array[j], array[i]
+        if array[i] < pivot_value:  # If element is smaller than pivot
+            j += 1  # Move the pointer forward
+            array[i], array[j] = array[j], array[i]  # Swap elements
+
+    # Place the pivot in its correct position
     j += 1
     array[j], array[high] = array[high], array[j]
-    return j
+    return j  # Return the index of the pivot
+
 
 def quicksort(array, low, high):
+    """
+    Sorts an array in place using the QuickSort algorithm.
+    Parameters:
+    - array: The list of elements to be sorted.
+    - low: The starting index of the range to sort.
+    - high: The ending index of the range to sort.
+    This function sorts the array by recursively partitioning it into smaller sub-arrays
+    and sorting those sub-arrays.
+    """
     if low < high:
+        # Partition the array and get the pivot index
         pivot = partition(array, low, high)
-        quicksort(array, low, pivot -1)
-        quicksort(array, pivot + 1, high)
 
-# partition(arr, 0, len(arr) - 1)
+        # Recursively sort the elements before and after the pivot
+        quicksort(array, low, pivot - 1)  # Sort the left partition
+        quicksort(array, pivot + 1, high)  # Sort the right partition
+
+
+# Call the quicksort function to sort the entire array
 quicksort(arr, 0, len(arr) - 1)
-print(arr)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-#
-# def partition(array, low, high):
-#     j = low - 1
-#     pivot_value = array[high]
-#     for i in range(low, high):
-#         if array[i] < pivot_value:
-#             j += 1
-#             array[i], array[j] = array[j], array[i]
-#     j += 1
-#     array[j], array[high] = array[high], array[j]
-#     return j
-#
-# def quicksort(array, low, high):
-#     if low < high:
-#         pivot = partition(array, low, high)
-#         quicksort(array, low, pivot - 1)
-#         quicksort(array, pivot + 1, high)
-#
-# quicksort(arr, 0, len(arr) - 1)
-# print(arr)
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# def partition3(array, low, high):
-#     i = low - 1
-#     pivot_value = array[high]
-#
-#     for j in range(low, high):
-#         if array[j] < pivot_value:
-#             i += 1
-#             array[i], array[j] = array[j], array[i]
-#     i += 1
-#     array[i], array[high] = array[high], array[i]
-#     return i
-#
-# def quick_sort3(array, low, high):
-#     if low < high:
-#         pivot = partition3(array, low, high)
-#         quick_sort3(array, low, pivot - 1)
-#         quick_sort3(array, pivot + 1, high)
-#
-# partition3(arr, 0 , len(arr) -1)
-# # quick_sort3(arr, 0, len(arr) -1)
-# print(arr)
-#
-#
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# def swap(array, index1, index2):
-#     array[index1], array[index2] = array[index2], array[index1]
-#
-# def partition(array, low, high):
-#     i = low - 1
-#     pivot_value =  array[high]
-#
-#     for j in range(low, high):
-#         if array[j] < pivot_value: # if element is less than pivot, swap with i
-#             i += 1
-#             swap(array, i, j)
-#     i += 1
-#     swap(array, i, high) #swap with pivot
-#     return i
-#
-# def quicksort(array, low, high):
-#     if low < high:
-#         pivot = partition(array, low, high)
-#         quicksort(array,0, pivot - 1)
-#         quicksort(array, pivot + 1, high)
-#
-# # quicksort(arr, 0, len(arr) - 1)
-# partition(arr, 0, len(arr) -1)
-# print(arr)
-#
-#
-#
-#
+# Print the sorted array
+print(arr)  # Output: [1, 3, 5, 6, 7, 10]
